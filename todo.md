@@ -12,5 +12,6 @@
 ## 0.0.0 - just get list of commits
 * (done) make this project a bin "blog-wc"
 * (done) blog-wc will check if the current working dir is a git folder if not it will log an error message
-* blog-wc will check for markdown files and stop with an error if none are found
+* (done) blog-wc will check for markdown files and stop with an error if none are found
 * (done) if current working path is a git folder blog-wc will preform a git log for the past few commits
+* have a /lib/git.js and a /lib/markdown.js
