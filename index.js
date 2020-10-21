@@ -2,14 +2,16 @@
 let exec = require('child_process').exec;
 
 // just check if this is a git folder
-let gitFolderCheck = () => {
+let gitFolderCheck = (dir) => {
     return new Promise((resolve, reject) => {
-        let check = exec('git status');
-        check.stdout.on('data', function (data) {
-            resolve(data.toString());
-        });
-        check.stderr.on('data', function (data) {
-            reject(data.toString());
+        exec('git status', {
+            cwd: dir === undefined ? process.cwd() : dir
+        }).on('exit', (code) => {
+            if (code === 0) {
+                resolve('is a git folder');
+            } else {
+                reject('is NOT a git folder');
+            }
         });
     });
 };
@@ -40,7 +42,6 @@ gitFolderCheck()
     console.log('looks like this might not be a git folder');
 })
 .then((data) => {
-    console.log('this is a git');
     return gitLogCommitList();
 })
 .then((data) => {
