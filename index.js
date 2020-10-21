@@ -8,9 +8,9 @@ let gitFolderCheck = (dir) => {
             cwd: dir === undefined ? process.cwd() : dir
         }).on('exit', (code) => {
             if (code === 0) {
-                resolve('is a git folder');
+                resolve('folder is a git folder');
             } else {
-                reject('is NOT a git folder');
+                reject('folder is NOT a git folder');
             }
         });
     });
@@ -42,7 +42,6 @@ readdir = promisify(fs.readdir);
 let mdCheckFor = (dir) => {
     return readdir(dir)
     .then((files) => {
-
         var i = 0;
         while (i < files.length) {
             let match = files[i].match(/\.md$/);
@@ -52,29 +51,29 @@ let mdCheckFor = (dir) => {
             i += 1;
         }
         return Promise.reject('no markdown files found.');
-
     });
 };
 
 // git check
 gitFolderCheck()
 .catch((e) => {
-    console.log('looks like this might not be a git folder');
+    console.log(e);
+    return Promise.reject('not a git folder');
 })
 .then(() => {
     return mdCheckFor(process.cwd());
 })
-.then((files) => {
-    console.log(files);
+.catch((e) => {
+    console.log(e);
+    return Promise.reject('can not check git log');
 })
-/*
+
 .then(() => {
-return gitLogCommitList();
+    return gitLogCommitList();
 })
 .then((data) => {
-console.log(data);
+    console.log(data);
 })
- */
 .catch((e) => {
     console.log(e);
 });
