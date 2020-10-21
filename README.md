@@ -1,5 +1,7 @@
 # nodejs-example-word-count-history
 
+This is a nodejs example that will create a list of commits for a git folder that has markdown files in it
+
 ```
 $ git log -n 20 --format="%H"
 d400b26b1262cc472422daacada58cc223e14f56
