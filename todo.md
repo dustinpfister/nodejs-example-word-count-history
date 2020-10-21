@@ -14,6 +14,6 @@
 * (done) blog-wc will check if the current working dir is a git folder if not it will log an error message
 * (done) blog-wc will check for markdown files and stop with an error if none are found
 * (done) if current working path is a git folder blog-wc will preform a git log for the past few commits
-* can set the number of commits to go back
+* (done) can set the number of commits to go back
 * (done) the getLogCommitList method returns an array of commits
 * have a /lib/git.js and a /lib/markdown.js
