@@ -14,8 +14,9 @@ let gitFolderCheck = () => {
     });
 };
 
-// git log -n 20 --format="%H"
+// check to see if we have any markdown files
 
+// git log -n 20 --format="%H"
 let gitLogCommitList = (dir) => {
     return new Promise((resolve, reject) => {
         let list = exec('git log -n 20 --format=\"%H\"'),
