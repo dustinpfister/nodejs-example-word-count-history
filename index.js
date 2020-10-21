@@ -20,16 +20,18 @@ let gitFolderCheck = (dir) => {
 let gitLogCommitList = (dir) => {
     return new Promise((resolve, reject) => {
         let list = exec('git log -n 20 --format=\"%H\"'),
-        out = '';
+        //out = '';
+        commits = [];
         list.stdout.on('data', function (data) {
             //resolve(data.toString());
-            out += data.toString();
+            //out += data.toString();
+            commits.push(data);
         });
         list.on('exit', function () {
-            resolve(out);
+            resolve(commits);
         });
         list.stderr.on('data', function (data) {
-            reject(data.toString());
+            reject(data);
         });
     });
 };
