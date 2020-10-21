@@ -17,14 +17,13 @@ let gitFolderCheck = (dir) => {
 };
 
 // git log -n 20 --format="%H"
-let gitLogCommitList = (dir) => {
+let gitLogCommitList = (dir, backCount) => {
+    backCount = backCount === undefined ? 5 : backCount;
     return new Promise((resolve, reject) => {
-        let list = exec('git log -n 20 --format=\"%H\"'),
+        let list = exec('git log -n ' + backCount + ' --format=\"%H\"'),
         //out = '';
         commits = [];
         list.stdout.on('data', function (data) {
-            //resolve(data.toString());
-            //out += data.toString();
             commits.push(data);
         });
         list.on('exit', function () {
@@ -71,7 +70,7 @@ gitFolderCheck()
 })
 
 .then(() => {
-    return gitLogCommitList();
+    return gitLogCommitList(process.cwd(), 10);
 })
 .then((data) => {
     console.log(data);
