@@ -16,8 +16,6 @@ let gitFolderCheck = (dir) => {
     });
 };
 
-// check to see if we have any markdown files
-
 // git log -n 20 --format="%H"
 let gitLogCommitList = (dir) => {
     return new Promise((resolve, reject) => {
@@ -36,17 +34,47 @@ let gitLogCommitList = (dir) => {
     });
 };
 
+let fs = require('fs'),
+promisify = require('util').promisify,
+readdir = promisify(fs.readdir);
+
+// check to see if we have any markdown files
+let mdCheckFor = (dir) => {
+    return readdir(dir)
+    .then((files) => {
+
+        var i = 0;
+        while (i < files.length) {
+            let match = files[i].match(/\.md$/);
+            if (match) {
+                return Promise.resolve('markdown file found');
+            }
+            i += 1;
+        }
+        return Promise.reject('no markdown files found.');
+
+    });
+};
+
 // git check
 gitFolderCheck()
 .catch((e) => {
     console.log('looks like this might not be a git folder');
 })
-.then((data) => {
-    return gitLogCommitList();
+.then(() => {
+    return mdCheckFor(process.cwd());
+})
+.then((files) => {
+    console.log(files);
+})
+/*
+.then(() => {
+return gitLogCommitList();
 })
 .then((data) => {
-    console.log(data);
+console.log(data);
 })
+ */
 .catch((e) => {
     console.log(e);
 });
