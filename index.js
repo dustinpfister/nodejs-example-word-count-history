@@ -26,7 +26,6 @@ let gitLogCommitList = (dir) => {
         });
         list.on('exit', function () {
             resolve(out);
-
         });
         list.stderr.on('data', function (data) {
             reject(data.toString());
