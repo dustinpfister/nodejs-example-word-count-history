@@ -11,7 +11,7 @@
 * (done) have a git.toCommit method that will go to the given commit hash id, or latest commit by default
 * (done) make sure that the git folder starts out on the latest commit on master
 * (done) just read file contents for each commit for starters
-* fix bug where the last commit is not read
+* (done) fix bug where the last commit is not read
 
 ## 0.1.0 - Improved git.commitList method
 * (done) make it so the git.commitList method returns an array of objects where each object contains a commit prop
