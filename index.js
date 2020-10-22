@@ -14,13 +14,18 @@ git.folderCheck()
 .catch((e) => {
     return Promise.reject('can not check git log');
 })
+.then(()=>{
+	return git.toCommit('master');
+})
 .then(() => {
     return git.commitList(process.cwd(), 10);
 })
 .then((commitList) => {
-
     let i = commitList.length,
     commitObj;
+
+    console.log(commitList);
+    console.log('');
 
     let loop = (done, error) => {
         i--;
