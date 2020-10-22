@@ -16,4 +16,4 @@
 * (done) if current working path is a git folder blog-wc will preform a git log for the past few commits
 * (done) can set the number of commits to go back
 * (done) the getLogCommitList method returns an array of commits
-* have a /lib/git.js and a /lib/markdown.js
+* (done) have a /lib/git.js and a /lib/markdown.js
