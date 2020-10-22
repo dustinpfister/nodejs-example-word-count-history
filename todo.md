@@ -7,9 +7,9 @@
 * each post object should contain an wordCount object that is an array of word counts, and dates
 
 ## 0.1.0 - Improved git.commitList method
-* make it so the git.commitList method returns an array of objects where each object contains a commit prop
-* this commit prop refers to the current text id of a given commit
-* make it so that there is a date property for each object also
+* (done) make it so the git.commitList method returns an array of objects where each object contains a commit prop
+* (done) the commit prop of one of these objects refers to the current text id of a given commit
+* (done) make it so that there is a date property for each object also
 
 ## 0.0.0 - just get list of commits
 * (done) make this project a bin "blog-wc"
