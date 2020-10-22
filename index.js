@@ -14,9 +14,11 @@ git.folderCheck()
 .catch((e) => {
     return Promise.reject('can not check git log');
 })
-.then(()=>{
-	return git.toCommit('master');
+// make sure we are at the latest commit on master
+.then(() => {
+    return git.toCommit('master');
 })
+// get commit list
 .then(() => {
     return git.commitList(process.cwd(), 10);
 })
