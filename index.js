@@ -31,11 +31,12 @@ git.folderCheck()
 
     let loop = (done, error) => {
         i--;
-        commitObj = commitList[i];
-        console.log(commitObj.commit);
-        if (i === 0) {
+        if (i === -1) {
             done();
         } else {
+
+            commitObj = commitList[i];
+            console.log(i, commitObj.commit);
 
             git.toCommit(commitObj.commit, process.cwd())
             .then(() => {
@@ -65,7 +66,7 @@ git.folderCheck()
 .then(() => {
     // return to latest commit
     console.log('looks good');
-    //return git.toCommit('master');
+    return git.toCommit('master');
 })
 .catch((e) => {
     console.log(e);
