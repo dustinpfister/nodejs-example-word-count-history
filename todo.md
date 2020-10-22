@@ -1,13 +1,15 @@
 # todo list for nodejs-example-word-count-history
 
-## 0.2.0 - create additional wordCount objects
-* after starting collection of objects is created for all posts start switching from the oldest commit to the newest
-* for each commit get a list of files where changes have happened from last commit
-* push new wordCount objects only for posts where changes happened from last commit
 
-## 0.1.0 - create start counts
-* starting with the oldest commit in the commit list create an array of objects for each markdown file
+## 0.2.0 - create word count objects for each markdown file
+* starting with the oldest commit in the commit list create an array of objects for each markdown file found
+* if no markdown files are found go to the next commit in the commit list
 * each post object should contain an wordCount object that is an array of word counts, and dates
+
+## 0.1.0 - Improved git.commitList method
+* make it so the git.commitList method returns an array of objects where each object contains a commit prop
+* this commit prop refers to the current text id of a given commit
+* make it so that there is a date property for each object also
 
 ## 0.0.0 - just get list of commits
 * (done) make this project a bin "blog-wc"
