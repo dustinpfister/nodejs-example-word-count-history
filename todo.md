@@ -2,6 +2,7 @@
 
 
 ## 0.2.0 - create word count objects for each markdown file
+* have a git.toCommit method that will go to the given commit hash id, or latest commit by default
 * starting with the oldest commit in the commit list create an array of objects for each markdown file found
 * if no markdown files are found go to the next commit in the commit list
 * each post object should contain an wordCount object that is an array of word counts, and dates
