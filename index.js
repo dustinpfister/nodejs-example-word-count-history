@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-let exec = require('child_process').exec,
-git = require('./lib/git.js'),
-markdown = require('./lib/markdown.js');
+let git = require('./lib/git.js');
 
+// read dir
 let fs = require('fs'),
 promisify = require('util').promisify,
 readdir = promisify(fs.readdir);
@@ -25,19 +24,15 @@ git.folderCheck()
 .then((commitList) => {
     let i = commitList.length,
     commitObj;
-
     console.log(commitList);
     console.log('');
-
     let loop = (done, error) => {
         i--;
         if (i === -1) {
             done();
         } else {
-
             commitObj = commitList[i];
             console.log(i, commitObj.commit);
-
             git.toCommit(commitObj.commit, process.cwd())
             .then(() => {
                 return readdir(process.cwd());
@@ -50,10 +45,8 @@ git.folderCheck()
                 console.log(e);
                 error(e);
             })
-
         }
     };
-
     return new Promise((resolve, reject) => {
         loop(() => {
             resolve('looks good');
@@ -61,10 +54,8 @@ git.folderCheck()
             reject(e);
         })
     });
-
 })
 .then(() => {
-    // return to latest commit
     console.log('looks good');
     return git.toCommit('master');
 })
