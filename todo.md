@@ -1,12 +1,17 @@
 # todo list for nodejs-example-word-count-history
 
-
-## 0.2.0 - create word count objects for each markdown file
-* (done) have a git.toCommit method that will go to the given commit hash id, or latest commit by default
+## 0.3.0 - create word count objects for each markdown file
 * starting with the oldest commit in the commit list create a post object for each markdown file found
 * if no markdown files are found go to the next commit in the commit list
 * if there is all ready a post object for the markdown file push a new word count for it
 * each post object should contain an wordCount object that is an array of word counts, and dates
+
+
+## 0.2.0 - Working out loop for each commit
+* (done) have a git.toCommit method that will go to the given commit hash id, or latest commit by default
+* (done) make sure that the git folder starts out on the latest commit on master
+* (done) just read file contents for each commit for starters
+* fix bug where the last commit is not read
 
 ## 0.1.0 - Improved git.commitList method
 * (done) make it so the git.commitList method returns an array of objects where each object contains a commit prop
