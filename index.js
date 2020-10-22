@@ -7,30 +7,10 @@ let fs = require('fs'),
 promisify = require('util').promisify,
 readdir = promisify(fs.readdir);
 
-/*
-let forCommit = (commitObj) => {
-
-return git.toCommit(commitObj.commit)
-.then(() => {
-console.log(commitObj);
-return readdir(process.cwd());
-})
-.then((files) => {
-console.log(files);
-return Promise.resolve('forCommit cal good');
-})
-
-};
- */
 git.folderCheck()
 .catch((e) => {
     return Promise.reject('not a git folder');
 })
-/*
-.then(() => {
-return markdown.checkForFiles(process.cwd());
-})
- */
 .catch((e) => {
     return Promise.reject('can not check git log');
 })
@@ -49,23 +29,31 @@ return markdown.checkForFiles(process.cwd());
         if (i === 0) {
             done();
         } else {
-            loop(done, error)
+
+            git.toCommit(commitObj.commit, process.cwd())
+            .then(() => {
+                return readdir(process.cwd());
+            })
+            .then((files) => {
+                console.log(files);
+                loop(done, error);
+            })
+            .catch((e) => {
+                console.log(e);
+                error(e);
+            })
+
         }
     };
 
     return new Promise((resolve, reject) => {
         loop(() => {
             resolve('looks good');
-        }, () => {
-            reject('oh no');
+        }, (e) => {
+            reject(e);
         })
     });
 
-    /*
-    return Promise.all(commitList.map((commitObj) => {
-    return forCommit(commitObj);
-    }));
-     */
 })
 .then(() => {
     // return to latest commit
