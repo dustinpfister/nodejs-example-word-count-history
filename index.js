@@ -21,19 +21,20 @@ git.folderCheck()
 .then(() => {
     return git.commitList(process.cwd(), 10);
 })
+// read dir for each commit, and create post objects
 .then((commitList) => {
     let i = commitList.length,
     commitObj;
-    console.log(commitList);
-    console.log('');
     let loop = (done, error) => {
         i--;
         if (i === -1) {
             done();
         } else {
             commitObj = commitList[i];
+            // switch to current commit
             git.toCommit(commitObj.commit, process.cwd())
             .then(() => {
+                // read dir
                 return readdir(process.cwd());
             })
             .then((files) => {
@@ -47,7 +48,7 @@ git.folderCheck()
     };
     return new Promise((resolve, reject) => {
         loop(() => {
-            resolve('looks good');
+            resolve(commitList);
         }, (e) => {
             reject(e);
         })
@@ -55,6 +56,7 @@ git.folderCheck()
 })
 .then(() => {
     console.log('looks good');
+    
     return git.toCommit('master');
 })
 .catch((e) => {
