@@ -32,13 +32,11 @@ git.folderCheck()
             done();
         } else {
             commitObj = commitList[i];
-            console.log(i, commitObj.commit);
             git.toCommit(commitObj.commit, process.cwd())
             .then(() => {
                 return readdir(process.cwd());
             })
             .then((files) => {
-                console.log(files);
                 loop(done, error);
             })
             .catch((e) => {
