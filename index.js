@@ -34,10 +34,16 @@ git.folderCheck()
             // switch to current commit
             git.toCommit(commitObj.commit, process.cwd())
             .then(() => {
-                // read dir
-                return readdir(process.cwd());
+                // if oldest commit use readdir to get a file list
+                // as there is nothing to compare to
+                if(i == commitList.length - 1){
+                    return readdir(process.cwd());
+                }else{
+                    return git.getChangedFileNames(commitList, i + 1);
+                }
             })
             .then((files) => {
+                console.log(files);
                 loop(done, error);
             })
             .catch((e) => {
