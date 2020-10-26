@@ -1,14 +1,23 @@
 # nodejs-example-word-count-history
 
-I would like to have a nodejs example that will function as a comand line tool that will create a collection of objects for each blog post in a git folder. Each object for a post will contain a wordCount property that will be an array of objects, one for each commit where the file was creeated or edited. An object in this wordCount aray will of course have a word count for the post at that state, along with a date object for the commit.
+I would like to have a nodejs example that will function as a command line tool that will create a collection of objects for each blog post in a git folder. Each object for a post will contain a wordCount property that will be an array of objects, one for each commit where the file was created or edited. An object in this wordCount array will of course have a word count for the post at that state, along with a date object for the commit.
 
-These objects can then be used to create reports that will help me to track my writing productivity. I have started a [blog post on this word count history nodejs example](https://dustinpfister.github.io/2020/10/22/nodejs-example-word-count-history/) if interesrted.
+These objects can then be used to create reports that will help me to track my writing productivity. I have started a [blog post on this word count history nodejs example](https://dustinpfister.github.io/2020/10/22/nodejs-example-word-count-history/) if interested.
+
+## The git.js module
+
+The git.js module for this example is where I am using the [exec method of the nodejs child process module](https://dustinpfister.github.io/2020/10/21/nodejs-child-process-exec/) to call git from within a nodejs programming environment. So this is the module that I am using to interface with a git folder to go back to previous states, and find what has changed for each commit.
+
+### git.getChangedFileNames for getting a changed files list
+
+The get changed file names method in this module is what I am using to get a list of changed file names for each commit in a commit list object. In the event that the current commit is the oldest commit, then just a simple fs.readdir is used to get a list of files.
+
 
 ## manual git command examples
 
 The git log command is what is used to get a list of commit hash id codes that can then be used to change the state of the git folder to an older state. In addition these hash codes can also be used with the git diff command to get a list of file names that have changed.
 
-A git log command can be done in the command line manualy like this:
+A git log command can be done in the command line manually like this:
 
 ```
 $ git log -n 20 --format="%H"
