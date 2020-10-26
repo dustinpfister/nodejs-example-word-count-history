@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 let git = require('./lib/git.js');
 
-// read dir
-//let fs = require('fs'),
-//promisify = require('util').promisify,
-//readdir = promisify(fs.readdir);
-
+// first check folder to see if it is a git folder
 git.folderCheck()
 .catch((e) => {
     return Promise.reject('not a git folder');
-})
-.catch((e) => {
-    return Promise.reject('can not check git log');
 })
 // make sure we are at the latest commit on master
 .then(() => {
