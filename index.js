@@ -2,9 +2,9 @@
 let git = require('./lib/git.js');
 
 // read dir
-let fs = require('fs'),
-promisify = require('util').promisify,
-readdir = promisify(fs.readdir);
+//let fs = require('fs'),
+//promisify = require('util').promisify,
+//readdir = promisify(fs.readdir);
 
 git.folderCheck()
 .catch((e) => {
@@ -25,23 +25,22 @@ git.folderCheck()
 .then((commitList) => {
     let i = commitList.length,
     commitObj;
+    // loop for each commitObj in commit list
     let loop = (done, error) => {
         i--;
         if (i === -1) {
             done();
         } else {
             commitObj = commitList[i];
-            // switch to current commit
+            // switch git folder to current commit
             git.toCommit(commitObj.commit, process.cwd())
+            // then get files
             .then(() => {
-                // if oldest commit use readdir to get a file list
-                // as there is nothing to compare to
-                if(i == commitList.length - 1){
-                    return readdir(process.cwd());
-                }else{
-                    return git.getChangedFileNames(commitList, i + 1);
-                }
+                // use get changed file names to get a list of changed files
+                // for the commit, or all files if it is the first commit
+                return git.getChangedFileNames(commitList, i);
             })
+            // then work with files
             .then((files) => {
                 console.log(files);
                 loop(done, error);
@@ -61,8 +60,7 @@ git.folderCheck()
     });
 })
 .then(() => {
-    console.log('looks good');
-    
+    console.log('done');
     return git.toCommit('master');
 })
 .catch((e) => {
