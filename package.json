@@ -1,6 +1,6 @@
 {
   "name": "nodejs-example-word-count-history",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Word count History",
   "main": "index.js",
   "bin":{
