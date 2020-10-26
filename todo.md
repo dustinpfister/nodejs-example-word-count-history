@@ -18,7 +18,9 @@
 ## 0.3.0 - git.getChangedFilesList method
 * (done) have a git.getChangedFilesList method that will use git diff for getting a list of files that changed from last commit
 * (done) have git.getChangedFilesList return an array of file names
-* pull logic that has to do with using fs.readDir for first commit where there is noting to compare to into git.changedFilesList
+* (done) pull logic that has to do with using fs.readDir for first commit where there is noting to compare to into git.changedFilesList
+* update README on git.js and this method
+* update README to link to blog post on this project
 
 ## 0.2.0 - Working out loop for each commit
 * (done) have a git.toCommit method that will go to the given commit hash id, or latest commit by default

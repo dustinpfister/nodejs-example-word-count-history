@@ -2,7 +2,11 @@
 
 This is a nodejs example that will create a list of commits for a git folder that has markdown files in it
 
-## git command examples
+## manual git command examples
+
+The git log command is what is used to get a list of commit hash id codes that can then be used to change the state of the git folder to an older state. In addition these hash codes can also be used with the git diff command to get a list of file names that have changed.
+
+A git log command can be done in the command line manualy like this:
 
 ```
 $ git log -n 20 --format="%H"
@@ -28,11 +32,25 @@ fc891d25b2a11afb415857ad7ec113b150857173
 48b3efa92ee8711da5c825e4a3301a39d8b26467
 ```
 
+The git diff command can be used like this with these hash id codes
+
 ```
-git diff 48b3efa92ee8711da5c825e4a3301a39d8b26467 d400b26b1262cc472422daacada58cc223e14f56 --name-only
+$ git diff 48b3efa92ee8711da5c825e4a3301a39d8b26467 d400b26b1262cc472422daacada58cc223e14f56 --name-only
 _posts/canvas-example.md
 _posts/git-diff.md
 _posts/js-javascript-scope.md
 _posts/js-nth-root.md
 _posts/js-string-charat.md
+```
+
+The checkout command can be used to set the git folder to the state of a given commit hash
+
+```
+$ git checkout 75721127f491993a221211ba76e7fad06e6fdc49
+```
+
+It can also be used to set back to the latest commit by just giving the name of the branch
+
+```
+$ git checkout master
 ```
