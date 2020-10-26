@@ -1,6 +1,8 @@
 # nodejs-example-word-count-history
 
-This is a nodejs example that will create a list of commits for a git folder that has markdown files in it
+I would like to have a nodejs example that will function as a comand line tool that will create a collection of objects for each blog post in a git folder. Each object for a post will contain a wordCount property that will be an array of objects, one for each commit where the file was creeated or edited. An object in this wordCount aray will of course have a word count for the post at that state, along with a date object for the commit.
+
+These objects can then be used to create reports that will help me to track my writing productivity.
 
 ## manual git command examples
 
