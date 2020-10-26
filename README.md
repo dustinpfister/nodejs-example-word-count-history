@@ -2,7 +2,7 @@
 
 I would like to have a nodejs example that will function as a comand line tool that will create a collection of objects for each blog post in a git folder. Each object for a post will contain a wordCount property that will be an array of objects, one for each commit where the file was creeated or edited. An object in this wordCount aray will of course have a word count for the post at that state, along with a date object for the commit.
 
-These objects can then be used to create reports that will help me to track my writing productivity.
+These objects can then be used to create reports that will help me to track my writing productivity. I have started a [blog post on this word count history nodejs example](https://dustinpfister.github.io/2020/10/22/nodejs-example-word-count-history/) if interesrted.
 
 ## manual git command examples
 
