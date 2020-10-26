@@ -1,14 +1,24 @@
 # todo list for nodejs-example-word-count-history
 
-## 0.3.0 - create post, and word count objects for each markdown file
-* (done) have a git.getChangedFilesList method that will use git diff for getting a list of files that changed from last commit
-* if no markdown files are found go to the next commit in the commit list
-* starting with the oldest commit with markdown files, create a post object for each markdown file found with fs.readdir
-* use git.getChangedFilesList method for each commit forward
-
+## 0.5.0 - post objects
+* start a posts array that will contain a postObject for each markdown file found
+* starting with the oldest commit with markdown files, create a post object for each markdown file found with git.getChangedFilesList
+* use markdown.getWordCount to get a word count for each file
 * if there is all ready a post object for the markdown file push a new word count for it
 * each post object should contain a wordCount object that is an array of word counts, and dates for each commit
 * just log results to the console for now.
+
+## 0.4.0 - markdown.getWordCount
+* using git.getChangedFilesList start will the oldest commit looking for mark down files
+* use markdown.checkForFiles to see if there are any files for a current commit
+* if no markdown files are found go to the next commit in the commit list
+* have a markdown.getWordCount method
+* if there are markdown files loop over each one, and just log the file name, date, amnd word count for now
+
+## 0.3.0 - git.getChangedFilesList method
+* (done) have a git.getChangedFilesList method that will use git diff for getting a list of files that changed from last commit
+* (done) have git.getChangedFilesList return an array of file names
+* pull logic that has to do with using fs.readDir for first commit where there is noting to compare to into git.changedFilesList
 
 ## 0.2.0 - Working out loop for each commit
 * (done) have a git.toCommit method that will go to the given commit hash id, or latest commit by default
